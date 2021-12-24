@@ -12,7 +12,15 @@ router.get('/index', (req, res, next) => {
 router.get('/about', (req, res) => {
   res.send({
     name: 'zs'
-  });
-});
+  })
+})
+router.get('/route', (req, res) => {
+  res.status(200).send({
+    data: [
+      { path: '/', name: 'Home', component: 'Home' },
+      { path: '/about', name: 'About', component: 'About' }
+    ]
+  })
+})
 
 module.exports = router
