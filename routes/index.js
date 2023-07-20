@@ -10,6 +10,20 @@ expressWs(router)
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' })
 })
+router.get('/html', (req, res) => {
+  const htmlContent = `
+    <html>
+      <head>
+        <title>Example Page</title>
+      </head>
+      <body>
+        <h1>Hello, World!</h1>
+        <p>This is an example page.</p>
+      </body>
+    </html>
+  `
+  res.status(200).send(htmlContent)
+})
 
 router.get('/index', (req, res, next) => {
   res.render('index', { title: 'Something!' })
@@ -26,6 +40,26 @@ router.get('/route', (req, res) => {
       { path: '/about', name: 'About', component: 'About' }
     ]
   })
+})
+
+router.post('/login', (req, res) => {
+  const { username, password } = req.body
+  if (username && password && username === 'admin' && password === 'admin') {
+    res.status(200).send({
+      code: 200,
+      data: {
+        msg: 'success'
+      }
+    })
+  } else if (username === '123' && password === '123') {
+    res.status(200).send({
+      code: 401,
+      msg: '登录失败'
+    })
+  } else
+    res.status(401).send({
+      msg: '未授权'
+    })
 })
 
 router.get('/file', (req, res) => {
