@@ -1,10 +1,11 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
 import cors from 'cors'
 import logger from 'morgan'
 import numberRouter from './routes/number'
 import nameRouter from './routes/name'
 import uploadRouter from './routes/upload'
 import chunkRouter from './routes/chunk'
+import loginRouter from './routes/login'
 import './middlewares/multer'
 
 const app = express()
@@ -19,6 +20,7 @@ app.use('/', numberRouter)
 app.use('/', nameRouter)
 app.use('/', uploadRouter)
 app.use('/', chunkRouter)
+app.use('/', loginRouter)
 
 // 启动服务器
 app.listen(port, () => {
